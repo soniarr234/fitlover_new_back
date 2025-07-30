@@ -65,7 +65,7 @@ router.post('/forgot-password', async (req, res) => {
 
     await updateUserResetToken(user.id, token, expires);
 
-    const resetLink = `http://localhost:5173/reset-password/${token}`;
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`;
 
     const { data, error } = await resend.emails.send({
     from: 'onboarding@resend.dev',
