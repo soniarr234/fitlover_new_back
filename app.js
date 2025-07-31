@@ -15,3 +15,8 @@ app.use('/api/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Backend server running at http://localhost:${PORT}`));
+
+const db = require('./config/db');
+db.query('SHOW TABLES')
+  .then(([rows]) => console.log('Tablas disponibles en la BBDD:', rows))
+  .catch(err => console.error('Error al conectar con la BBDD:', err.message));
