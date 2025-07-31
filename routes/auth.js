@@ -71,7 +71,7 @@ router.post('/forgot-password', async (req, res) => {
     const expires = new Date(Date.now() + 3600000); // 1 hora
 
     await updateUserResetToken(user.id, token, expires);
-
+    console.log('FRONTEND_URL:', process.env.FRONTEND_URL);
     const resetLink = `${process.env.FRONTEND_URL}/reset-password/${token}`;
 
     const { data, error } = await resend.emails.send({
