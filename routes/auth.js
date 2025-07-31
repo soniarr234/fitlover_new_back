@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     console.log('Hash:', hash);
 
-    const result = await createUser(nombre, email, hash);
+    const result = await createUser(nombre, apellidos, email, hash);
     console.log('Resultado de crear usuario:', result);
 
     res.status(201).json({ msg: 'Usuario registrado correctamente' });

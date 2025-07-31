@@ -1,10 +1,10 @@
 //backend/models/UserModel.js
 const db = require('../config/db');
 
-const createUser = async (nombre, email, passwordHash) => {
+const createUser = async (nombre, apellidos, email, passwordHash) => {
   const [result] = await db.execute(
-    'INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)',
-    [nombre, email, passwordHash]
+    'INSERT INTO usuarios (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)',
+    [nombre, apellidos, email, passwordHash]
   );
   return result;
 };
