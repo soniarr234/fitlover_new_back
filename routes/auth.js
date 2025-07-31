@@ -16,18 +16,25 @@ const {
 
 router.post('/register', async (req, res) => {
   const { nombre, email, password } = req.body;
+  console.log('Registro:', { nombre, email, password });
 
   try {
     const existing = await getUserByEmail(email);
     if (existing) return res.status(400).json({ msg: 'El usuario ya existe' });
 
     const hash = await bcrypt.hash(password, 10);
-    await createUser(nombre, email, hash);
+    console.log('Hash:', hash);
+
+    const result = await createUser(nombre, email, hash);
+    console.log('Resultado de crear usuario:', result);
+
     res.status(201).json({ msg: 'Usuario registrado correctamente' });
   } catch (err) {
+    console.error('Error en registro:', err);
     res.status(500).json({ msg: 'Error al registrarte', error: err.message });
   }
 });
+
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
