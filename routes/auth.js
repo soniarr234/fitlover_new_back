@@ -15,8 +15,8 @@ const {
 
 
 router.post('/register', async (req, res) => {
-  const { nombre, email, password } = req.body;
-  console.log('Registro:', { nombre, email, password });
+  const { nombre, apellidos, email, password } = req.body;
+  console.log('Registro:', { nombre, apellidos, email, password });
 
   try {
     const existing = await getUserByEmail(email);
